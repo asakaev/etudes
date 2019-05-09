@@ -2,8 +2,9 @@ package sorting
 
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import sorting.BubbleSort.{ bubbleSort, sweep }
 
-class BubbleSuite extends FunSuite with GeneratorDrivenPropertyChecks {
+class BubbleSortSuite extends FunSuite with GeneratorDrivenPropertyChecks {
   test("sweep") {
     assert(sweep(List(1, 2, 3)) == Left(List(3, 2, 1)))
     assert(sweep(List(1)) == Left(List(1)))
@@ -14,7 +15,7 @@ class BubbleSuite extends FunSuite with GeneratorDrivenPropertyChecks {
 
   test("sort") {
     forAll { xs: List[Int] =>
-      assert(sort(xs) == xs.sorted)
+      assert(bubbleSort(xs) == xs.sorted)
     }
   }
 }

@@ -1,6 +1,8 @@
+package sorting
+
 import scala.annotation.tailrec
 
-package object sorting {
+object BubbleSort {
 
   case class S1[A](l: List[A], r: List[A], modified: Boolean)
   case class S2[A](l: List[A], r: List[A])
@@ -24,12 +26,12 @@ package object sorting {
   }
 
   /**
-   * Returns asc ordered list
+   * Tail recursive BubbleSort implementation
    *
    * Example:
-   * sort(List(5, 1, 4, 2, 8)) == List(1, 2, 4, 5, 8)
+   * bubbleSort(List(5, 1, 4, 2, 8)) == List(1, 2, 4, 5, 8)
    */
-  def sort[A: Ordering](xs: List[A]): List[A] = {
+  def bubbleSort[A: Ordering](xs: List[A]): List[A] = {
     @tailrec def sortAux(s: S2[A]): S2[A] = s.l match {
       case Nil      => S2(Nil, s.r)
       case h :: Nil => S2(Nil, h :: s.r)
