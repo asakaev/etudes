@@ -6,5 +6,12 @@ lazy val escalator = (project in file("."))
     libraryDependencies ++= List(
       "org.scalatest"  %% "scalatest"  % "3.0.5",
       "org.scalacheck" %% "scalacheck" % "1.14.0"
-    ).map(_ % Test)
+    ).map(_ % Test),
+    scalacOptions ++= List(
+      "-deprecation",
+      "-Xlint",
+      "-Xfatal-warnings",
+      "-language:higherKinds",
+      "-Ypartial-unification"
+    )
   )
