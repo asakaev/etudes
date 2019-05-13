@@ -1,3 +1,5 @@
+import fs2._
+
 import scala.annotation.tailrec
 
 package object sequence {
@@ -10,5 +12,8 @@ package object sequence {
     }
     loop(n, 0, 1)
   }
+
+  val fibonacci: Stream[Pure, Int] =
+    Stream(0) ++ fibonacci.scan(1)(_ + _)
 
 }
