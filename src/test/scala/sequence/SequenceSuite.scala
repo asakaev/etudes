@@ -1,21 +1,44 @@
 package sequence
 
+import fs2._
+import org.scalacheck.Gen
 import org.scalatest.FunSuite
+import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
-class SequenceSuite extends FunSuite {
-  test("fibonacci") {
-    assert(fibonacci(1) == 0)
-    assert(fibonacci(2) == 1)
-    assert(fibonacci(3) == 1)
-    assert(fibonacci(4) == 2)
-    assert(fibonacci(5) == 3)
+class SequenceSuite extends FunSuite with GeneratorDrivenPropertyChecks {
+
+  test("rle0") {
+    assert(rle("") == "")
   }
 
-  test("fibonacci stream") {
-    assert(fibonacci.take(1).compile.last == Some(0))
-    assert(fibonacci.take(2).compile.last == Some(1))
-    assert(fibonacci.take(3).compile.last == Some(1))
-    assert(fibonacci.take(4).compile.last == Some(2))
-    assert(fibonacci.take(5).compile.last == Some(3))
+  test("rle1") {
+    assert(rle("A") == "A")
   }
+
+  test("rle2a") {
+    assert(rle("AA") == "A2")
+  }
+
+  test("rle2b") {
+    assert(rle("AB") == "AB")
+  }
+
+  test("rle3a") {
+    assert(rle("AAB") == "A2B")
+  }
+
+  test("rle3b") {
+    assert(rle("ABB") == "AB2")
+  }
+
+  test("rle") {
+    assert(rle("AAAABBBCCXYZDDDDEEEFFFAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBB") == "A4B3C2XYZD4E3F3A6B28")
+  }
+
+  test("rle stream") {
+    forAll(Gen.alphaUpperStr) { s: String =>
+      assert(Stream.emits(s).through(rlePipe).compile.toList.mkString == rle(s))
+    }
+  }
+
 }
