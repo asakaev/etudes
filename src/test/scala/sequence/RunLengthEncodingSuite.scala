@@ -4,34 +4,17 @@ import fs2._
 import org.scalacheck.Gen
 import org.scalatest.FunSuite
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import sequence.RunLengthEncoding._
 
-class SequenceSuite extends FunSuite with GeneratorDrivenPropertyChecks {
-
-  test("rle0") {
-    assert(rle("") == "")
-  }
-
-  test("rle1") {
-    assert(rle("A") == "A")
-  }
-
-  test("rle2a") {
-    assert(rle("AA") == "A2")
-  }
-
-  test("rle2b") {
-    assert(rle("AB") == "AB")
-  }
-
-  test("rle3a") {
-    assert(rle("AAB") == "A2B")
-  }
-
-  test("rle3b") {
-    assert(rle("ABB") == "AB2")
-  }
+class RunLengthEncodingSuite extends FunSuite with GeneratorDrivenPropertyChecks {
 
   test("rle") {
+    assert(rle("") == "")
+    assert(rle("A") == "A")
+    assert(rle("AA") == "A2")
+    assert(rle("AB") == "AB")
+    assert(rle("AAB") == "A2B")
+    assert(rle("ABB") == "AB2")
     assert(rle("AAAABBBCCXYZDDDDEEEFFFAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBB") == "A4B3C2XYZD4E3F3A6B28")
   }
 
