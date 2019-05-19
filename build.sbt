@@ -8,8 +8,9 @@ lazy val escalator = (project in file("."))
       "co.fs2"        %% "fs2-core"  % "1.0.4"
     ),
     libraryDependencies ++= List(
-      "org.scalatest"  %% "scalatest"  % "3.0.5",
-      "org.scalacheck" %% "scalacheck" % "1.14.0"
+      "org.scalatest"  %% "scalatest"    % "3.0.5",
+      "org.scalacheck" %% "scalacheck"   % "1.14.0",
+      "org.typelevel"  %% "cats-testkit" % "1.6.0"
     ).map(_ % Test),
     scalacOptions ++= List(
       "-deprecation",
