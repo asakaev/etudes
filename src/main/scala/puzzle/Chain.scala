@@ -16,6 +16,6 @@ object Chain {
     x =>
       chain.foldLeft(Option.empty[T]) { (o, f) =>
         o.fold(f(x))(f(_).orElse(o))
-    }
+      }
 
 }
