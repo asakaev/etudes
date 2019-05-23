@@ -15,4 +15,8 @@ class MathematicsSuite extends FunSuite {
     assert(roots(6000, 7000) == 3)
     assert(roots(2, 2) == 1)
   }
+
+  test("roots empty") {
+    assert(roots(17, 20) == 0)
+  }
 }

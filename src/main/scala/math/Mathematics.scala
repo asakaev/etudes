@@ -28,7 +28,7 @@ object Mathematics {
    * For example, given A = 10, B = 20, the function should return 2. Starting with the integer 16, two square root
    * operations can be performed: sqrt(16) = 4 and then sqrt(4) = 2.
    *
-   * Given A = 6000 and B = 7000, the function should return 3. Starting with integer 5661, three square root
+   * Given A = 6000 and B = 7000, the function should return 3. Starting with integer 6561, three square root
    * operations can be performed: sqrt(6561) = 81, sqrt(81) = 9 and sqrt(9) = 3.
    *
    * Write an efficient algorithm for the following assumptions:
