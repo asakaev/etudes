@@ -35,6 +35,7 @@ object Mathematics {
    * - A and B are integers within the range [2..1000000000]
    * - A <= B
    */
+  // TODO: wrong implementation
   def roots(a: Int, b: Int): Int = {
     @tailrec def go(n: Int, x: Int): Int =
       sqrt(x).toInt match {
@@ -42,6 +43,15 @@ object Mathematics {
         case sq => go(n + 1, sq)
       }
     go(1, sqrt(b).toInt)
+  }
+
+  /**
+   * Determines an even or odd number
+   */
+  @tailrec def even(n: Int): Boolean = n match {
+    case x if x == 0 => true
+    case x if x == 1 => false
+    case x           => even(x - 2)
   }
 
 }

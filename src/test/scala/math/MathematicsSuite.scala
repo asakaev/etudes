@@ -1,9 +1,10 @@
 package math
 
-import math.Mathematics.{ roots, smallest }
+import math.Mathematics._
 import org.scalatest.FunSuite
+import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
-class MathematicsSuite extends FunSuite {
+class MathematicsSuite extends FunSuite with GeneratorDrivenPropertyChecks {
   test("smallest") {
     assert(smallest(125) == 100)
     assert(smallest(10) == 10)
@@ -18,5 +19,11 @@ class MathematicsSuite extends FunSuite {
 
   test("roots empty") {
     assert(roots(17, 20) == 0)
+  }
+
+  test("even") {
+    forAll { i: Int =>
+      assert(even(i) == (i % 2 == 0))
+    }
   }
 }
