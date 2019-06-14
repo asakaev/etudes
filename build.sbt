@@ -1,8 +1,8 @@
 ThisBuild / scalaVersion := "2.12.8"
 
-lazy val escalator = (project in file("."))
+lazy val etudes = (project in file("."))
   .settings(
-    name := "escalator",
+    name := "etudes",
     libraryDependencies ++= List(
       "org.typelevel" %% "cats-core" % "1.6.0",
       "co.fs2"        %% "fs2-core"  % "1.0.4"
