@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion := "2.12.8"
+ThisBuild / scalaVersion := "2.12.9"
 
 lazy val etudes = (project in file("."))
   .settings(
@@ -9,7 +9,7 @@ lazy val etudes = (project in file("."))
     ),
     libraryDependencies ++= List(
       "org.scalatest"  %% "scalatest"    % "3.0.5",
-      "org.scalacheck" %% "scalacheck"   % "1.14.0",
+      "org.scalacheck" %% "scalacheck"   % "1.14.1",
       "org.typelevel"  %% "cats-testkit" % "1.6.0"
     ).map(_ % Test),
     scalacOptions ++= List(
