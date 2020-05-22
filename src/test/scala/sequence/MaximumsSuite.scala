@@ -6,15 +6,15 @@ import sequence.Maximums._
 
 class MaximumsSuite extends FunSuite with GeneratorDrivenPropertyChecks {
 
-  test("twoMaximums") {
+  test("secondMaximum") {
     forAll { xs: List[Int] =>
-      val expected: Option[(Int, Int)] =
+      val expected: Option[Int] =
         xs.toSet.toList.sorted.reverse match {
-          case l :: r :: _ => Some(l -> r)
+          case l :: r :: _ => Some(Math.min(l, r))
           case _           => None
         }
 
-      assert(twoMaximums(xs) == expected)
+      assert(secondMaximum(xs) == expected)
     }
   }
 
