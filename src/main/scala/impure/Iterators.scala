@@ -4,7 +4,7 @@ object Iterators {
 
   def flatten(i: Iterator[Any]): Iterator[String] =
     i.flatMap {
-      case s: String       => Iterator(s)
+      case s: String       => Iterator.single(s)
       case it: Iterator[_] => flatten(it)
       case _               => Iterator.empty
     }
@@ -13,7 +13,7 @@ object Iterators {
     def go(s: (List[Iterator[A]], List[Iterator[A]])): Iterator[A] = s match {
       case (Nil, Nil)                 => Iterator.empty
       case (Nil, ys)                  => go(ys.reverse -> Nil)
-      case (x :: xs, ys) if x.hasNext => Iterator(x.next()) ++ go(xs -> (x :: ys))
+      case (x :: xs, ys) if x.hasNext => Iterator.single(x.next()) ++ go(xs -> (x :: ys))
       case (_ :: xs, ys)              => go(xs -> ys)
     }
     go(iterators.toList -> Nil)
