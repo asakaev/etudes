@@ -1,6 +1,6 @@
 package impure
 
-import impure.Iterators.flatten
+import impure.Iterators._
 import org.scalatest.FunSuite
 
 class IteratorsSuite extends FunSuite {
@@ -25,6 +25,18 @@ class IteratorsSuite extends FunSuite {
     val expected = List("1", "1.1", "1.2", "2", "2.1.1", "2.2")
 
     assert(flatten(sample).toList == expected)
+  }
+
+  test("roundRobin") {
+    val sample: List[Iterator[Int]] =
+      List(
+        Iterator(1, 2, 3),
+        Iterator(4, 5, 6)
+      )
+
+    val expected = List(1, 4, 2, 5, 3, 6)
+
+    assert(roundRobin(sample: _*).toList == expected)
   }
 
 }
