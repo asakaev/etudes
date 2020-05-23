@@ -5,7 +5,7 @@ object Iterators {
   def flatten(i: Iterator[Any]): Iterator[String] =
     i.flatMap {
       case s: String       => Iterator.single(s)
-      case it: Iterator[_] => flatten(it)
+      case it: Iterator[_] => Iterator.empty ++ flatten(it)
       case _               => Iterator.empty
     }
 
