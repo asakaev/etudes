@@ -12,9 +12,8 @@ object RunLengthEncoding2 {
     xs.foldLeft(List.empty[(A, Int)]) {
         case (ys, a) =>
           ys match {
-            case Nil                    => (a, 1) :: Nil
             case (b, n) :: tl if a == b => (a, n + 1) :: tl
-            case _                      => (a, 1) :: ys
+            case ys                     => (a, 1) :: ys
           }
       }
       .reverse
