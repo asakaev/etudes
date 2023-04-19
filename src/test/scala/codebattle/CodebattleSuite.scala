@@ -19,4 +19,14 @@ class CodebattleSuite extends FunSuite {
     assert(!positiveDominant(List(1, 2, 3, -3, -4, -5)))
   }
 
+  test("separateWithComma") {
+    assert(separateWithComma(1238592) == "1,238,592")
+    assert(separateWithComma(1) == "1")
+    assert(separateWithComma(10) == "10")
+    assert(separateWithComma(150) == "150")
+    assert(separateWithComma(1234) == "1,234")
+    assert(separateWithComma(15075) == "15,075")
+    assert(separateWithComma(123456) == "123,456")
+  }
+
 }
