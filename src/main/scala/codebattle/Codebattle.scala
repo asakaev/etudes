@@ -44,4 +44,12 @@ object Codebattle {
       .sorted
   }
 
+  /**
+    * Calculate digits sum of two-digit integer `n`.
+    */
+  def addTwoNumber(n: Int): Int =
+    n.toString.foldLeft(0) { (acc, c) =>
+      acc + c.asDigit
+    }
+
 }

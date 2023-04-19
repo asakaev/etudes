@@ -36,4 +36,11 @@ class CodebattleSuite extends FunSuite {
     assert(keyForMinValue(Map("o" -> 0, "z" -> -2, "j" -> 1)) == List("z"))
   }
 
+  test("addTwoNumber") {
+    assert(addTwoNumber(12) == 3)
+    assert(addTwoNumber(23) == 5)
+    assert(addTwoNumber(10) == 1)
+    assert(addTwoNumber(99) == 18)
+  }
+
 }
