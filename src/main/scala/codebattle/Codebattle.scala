@@ -31,4 +31,17 @@ object Codebattle {
   def separateWithComma(n: Int): String =
     n.toString.reverse.grouped(3).mkString(",").reverse
 
+  /**
+    * Given a hash map, return the keys of the elements with the smallest value.
+    * The result should be sorted alphabetically.
+    */
+  def keyForMinValue(m: Map[String, Int]): List[String] = {
+    val (_, min) = m.minBy(_._2)
+
+    m.foldLeft(List.empty[String]) {
+        case (xs, (k, v)) => if (v == min) k :: xs else xs
+      }
+      .sorted
+  }
+
 }

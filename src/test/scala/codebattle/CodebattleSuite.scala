@@ -29,4 +29,11 @@ class CodebattleSuite extends FunSuite {
     assert(separateWithComma(123456) == "123,456")
   }
 
+  test("keyForMinValue") {
+    val m = Map("father" -> 2, "detail" -> -7, "morning" -> 3, "damage" -> -7, "powder" -> 5)
+    assert(keyForMinValue(m) == List("damage", "detail"))
+    assert(keyForMinValue(Map("k" -> 2, "h" -> 3, "j"  -> 1)) == List("j"))
+    assert(keyForMinValue(Map("o" -> 0, "z" -> -2, "j" -> 1)) == List("z"))
+  }
+
 }
