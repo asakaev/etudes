@@ -11,4 +11,12 @@ class CodebattleSuite extends FunSuite {
     assert(boxesVolume(List(List(2, 2, 2))) == 8)
   }
 
+  test("positiveDominant") {
+    assert(positiveDominant(List(1, 2, 3, -3, -4)))
+    assert(positiveDominant(List(1, 1, 2, 2, 3, 3, -4, -4)))
+    assert(!positiveDominant(List(1, -1, -2, -3, -4)))
+    assert(!positiveDominant(List(10, 1, -2, -2, -3, -4)))
+    assert(!positiveDominant(List(1, 2, 3, -3, -4, -5)))
+  }
+
 }
