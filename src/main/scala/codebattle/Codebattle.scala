@@ -52,4 +52,11 @@ object Codebattle {
       acc + c.asDigit
     }
 
+  /**
+    * Implement a function that returns an array of additive inverses. A number added with
+    * its `additive inverse` equals zero.
+    */
+  def additiveInverse(xs: List[Int]): List[Int] =
+    xs.map(-_)
+
 }

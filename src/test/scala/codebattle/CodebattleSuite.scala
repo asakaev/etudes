@@ -43,4 +43,10 @@ class CodebattleSuite extends FunSuite {
     assert(addTwoNumber(99) == 18)
   }
 
+  test("additiveInverse") {
+    assert(additiveInverse(List(1, -2, 3, -4, -5)) == List(-1, 2, -3, 4, 5))
+    assert(additiveInverse(List(1, 1, 1, 10)) == List(-1, -1, -1, -10))
+    assert(additiveInverse(List(-5, 25, 125)) == List(5, -25, -125))
+  }
+
 }
