@@ -26,4 +26,18 @@ class MathematicsSuite extends FunSuite with GeneratorDrivenPropertyChecks {
       assert(even(i) == (i % 2 == 0))
     }
   }
+
+  test("gcd") {
+    assert(gcd(1220, 516) == 4)
+    assert(gcd(12, 30) == 6)
+    assert(gcd(106, 16) == 2)
+    assert(gcd(270, 192) == 6)
+  }
+
+  test("lcm") {
+    assert(lcm(4, 5) == 20)
+    assert(lcm(4, 6) == 12)
+    assert(lcm(10, 30) == 30)
+    assert(lcm(10, 32) == 160)
+  }
 }
