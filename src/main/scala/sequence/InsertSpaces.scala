@@ -4,25 +4,23 @@ import scala.annotation.tailrec
 
 object InsertSpaces {
 
-  final case class State(text: String, words: List[String], seen: Set[String])
-
   def insertSpaces(dict: Set[String], text: String): List[String] = {
-    def go(s: State): List[List[String]] = {
-      if (s.text.isEmpty) List(s.words.reverse)
+    def go(s: String, words: List[String], seen: Set[String]): List[List[String]] = {
+      if (s.isEmpty) List(words.reverse)
       else {
         val found: Option[(String, String)] =
-          chunks(s.text).find { case (w, _) => dict.contains(w) && !s.seen.contains(w) }
+          chunks(s).find { case (w, _) => dict.contains(w) && !seen.contains(w) }
 
         found match {
           case None => Nil
           case Some((word, rem)) =>
-            go(State(rem, word :: s.words, Set.empty)) ++
-              go(State(word + rem, s.words, s.seen + word))
+            go(rem, word :: words, Set.empty) ++
+              go(word + rem, words, seen + word)
         }
       }
     }
 
-    go(State(text, Nil, Set.empty)).map(_.mkString(" "))
+    go(text, Nil, Set.empty).map(_.mkString(" "))
   }
 
   /**
