@@ -35,7 +35,7 @@ object InsertSpaces {
   def chunks(s: String): Stream[(String, String)] = {
     def go(l: String, r: String): Stream[(String, String)] =
       if (r.isEmpty) Stream.empty
-      else Stream((l + r.head, r.tail)) #::: go(l + r.head, r.tail)
+      else (l + r.head, r.tail) #:: go(l + r.head, r.tail)
 
     go("", s)
   }
