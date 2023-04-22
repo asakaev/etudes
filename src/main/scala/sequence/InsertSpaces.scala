@@ -22,7 +22,7 @@ object InsertSpaces {
       else
         chunks(s).find { case (w, _) => dict.contains(w) && !seen.contains(w) } match {
           case None           => Stream.empty
-          case Some((w, rem)) => go(rem, w :: words, Set.empty) ++ go(w + rem, words, seen + w)
+          case Some((w, rem)) => go(rem, w :: words, Set.empty) #::: go(w + rem, words, seen + w)
         }
 
     go(text, Nil, Set.empty).map(_.mkString(" ")).toList
@@ -35,7 +35,7 @@ object InsertSpaces {
   def chunks(s: String): Stream[(String, String)] = {
     def go(l: String, r: String): Stream[(String, String)] =
       if (r.isEmpty) Stream.empty
-      else Stream((l + r.head, r.tail)) ++ go(l + r.head, r.tail)
+      else Stream((l + r.head, r.tail)) #::: go(l + r.head, r.tail)
 
     go("", s)
   }
