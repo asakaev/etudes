@@ -1,9 +1,9 @@
 package codebattle
 
 import codebattle.Codebattle._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
-class CodebattleSuite extends FunSuite {
+class CodebattleSuite extends AnyFunSuite {
 
   test("boxesVolume") {
     assert(boxesVolume(List(List(2, 3, 2), List(6, 6, 7), List(1, 2, 1))) == 266)

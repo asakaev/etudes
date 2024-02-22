@@ -1,9 +1,9 @@
 package future
 
 import future.Traverse._
-import org.scalatest.AsyncFunSuite
+import org.scalatest.funsuite.AsyncFunSuite
 
-import scala.concurrent.{ ExecutionContext, Future }
+import scala.concurrent.{ExecutionContext, Future}
 
 class TraverseSpec extends AsyncFunSuite {
   import TraverseSpec._

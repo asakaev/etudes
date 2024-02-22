@@ -1,8 +1,8 @@
 package search
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
-class SearchSuite extends FunSuite {
+class SearchSuite extends AnyFunSuite {
   test("binarySearch") {
     assert(binarySearch(Vector.empty[Int], 42) == None)
     assert(binarySearch(Vector(1), 0) == None)

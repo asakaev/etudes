@@ -1,8 +1,8 @@
 package generator
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
-class GeneratorSuite extends FunSuite {
+class GeneratorSuite extends AnyFunSuite {
   test("fibonacci") {
     assert(fibonacci(1) == 0)
     assert(fibonacci(2) == 1)

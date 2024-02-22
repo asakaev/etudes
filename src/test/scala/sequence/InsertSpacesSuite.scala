@@ -1,9 +1,9 @@
 package sequence
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import sequence.InsertSpaces._
 
-class InsertSpacesSuite extends FunSuite {
+class InsertSpacesSuite extends AnyFunSuite {
   test("insertSpaces") {
     val dict = Set("this", "is", "awesome", "a", "aw", "awe", "some", "so", "me", "i", "we")
 

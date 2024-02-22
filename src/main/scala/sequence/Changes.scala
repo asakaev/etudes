@@ -1,17 +1,17 @@
 package sequence
 
 import cats.Eq
-import fs2.{ Pipe, Pure }
+import fs2.{Pipe, Pure}
 
 import scala.annotation.tailrec
 
 /**
- * Дана последовательность целочисленных значений.
- * Определить количество смен знака.
- */
+  * Дана последовательность целочисленных значений.
+  * Определить количество смен знака.
+  */
 object Changes {
 
-  implicit val signEqForInt: Eq[Int] = _.signum == _.signum
+  implicit val signEqForInt: Eq[Int] = _.sign == _.sign
 
   def changes[A: Eq](xs: List[A]): Int = {
     @tailrec def go(n: Int, ys: List[A]): Int = ys match {

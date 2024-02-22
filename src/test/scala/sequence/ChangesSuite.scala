@@ -1,11 +1,11 @@
 package sequence
 
 import fs2._
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import sequence.Changes._
 
-class ChangesSuite extends FunSuite with GeneratorDrivenPropertyChecks {
+class ChangesSuite extends AnyFunSuite with ScalaCheckPropertyChecks {
   test("changes") {
     assert(changes(Nil) == 0)
     assert(changes(List(1)) == 0)

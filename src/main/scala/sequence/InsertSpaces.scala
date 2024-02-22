@@ -17,11 +17,11 @@ object InsertSpaces {
     *  val dict = Set("this", "is", "awesome", "a", "aw", "awe", "some", "so", "me", "i", "we")
     */
   def insertSpaces(dict: Set[String], text: String): List[String] = {
-    def go(s: String, words: List[String], seen: Set[String]): Stream[List[String]] =
-      if (s.isEmpty) Stream(words.reverse)
+    def go(s: String, words: List[String], seen: Set[String]): LazyList[List[String]] =
+      if (s.isEmpty) LazyList(words.reverse)
       else
         chunks(s).find { case (w, _) => dict.contains(w) && !seen.contains(w) } match {
-          case None           => Stream.empty
+          case None           => LazyList.empty
           case Some((w, rem)) => go(rem, w :: words, Set.empty) #::: go(w + rem, words, seen + w)
         }
 
@@ -32,9 +32,9 @@ object InsertSpaces {
     * Scan string
     * Example: abcd => [("a", "bcd"), ("ab", "cd"), ("abc", "d"), ("abcd", "")]
     */
-  def chunks(s: String): Stream[(String, String)] = {
-    def go(l: String, r: String): Stream[(String, String)] =
-      if (r.isEmpty) Stream.empty
+  def chunks(s: String): LazyList[(String, String)] = {
+    def go(l: String, r: String): LazyList[(String, String)] =
+      if (r.isEmpty) LazyList.empty
       else (l + r.head, r.tail) #:: go(l + r.head, r.tail)
 
     go("", s)

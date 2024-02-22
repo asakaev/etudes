@@ -1,9 +1,9 @@
 package impure
 
 import impure.Iterators._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
-class IteratorsSuite extends FunSuite {
+class IteratorsSuite extends AnyFunSuite {
 
   test("flatten") {
     val sample: Iterator[Any] =

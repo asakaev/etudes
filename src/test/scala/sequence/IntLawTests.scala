@@ -2,7 +2,7 @@ package sequence
 
 import cats.kernel.laws.discipline.EqTests
 import cats.tests.CatsSuite
-import org.scalacheck.{ Arbitrary, Gen }
+import org.scalacheck.{Arbitrary, Gen}
 import sequence.Changes._
 
 class IntLawTests extends CatsSuite {

@@ -1,8 +1,8 @@
 package transform
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
-class TransformSuite extends FunSuite {
+class TransformSuite extends AnyFunSuite {
   test("fallback") {
     assert(fallback(Some(1), None) == Some(Left(1)))
     assert(fallback(Some(1), Some(2)) == Some(Left(1)))

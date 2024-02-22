@@ -13,7 +13,7 @@ object ArraysStrings {
     @tailrec def headUnique(s: String, isUnique: Boolean): Boolean =
       if (!isUnique || s.size < 2) isUnique
       else if (s(0) == s(1)) false
-      else headUnique(s(0) + s.drop(2), isUnique = true)
+      else headUnique(s(0).toString + s.drop(2), isUnique = true)
 
     @tailrec def loop(s: String, isUnique: Boolean): Boolean =
       if (!isUnique || s.isEmpty) isUnique
@@ -26,7 +26,7 @@ object ArraysStrings {
   // 1.2
   def reverse(s: String): String =
     s.foldLeft("") { (acc, x) =>
-      x + acc
+      x.toString + acc
     }
 
 }

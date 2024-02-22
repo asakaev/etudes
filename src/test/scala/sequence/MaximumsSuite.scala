@@ -1,10 +1,10 @@
 package sequence
 
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import sequence.Maximums._
 
-class MaximumsSuite extends FunSuite with GeneratorDrivenPropertyChecks {
+class MaximumsSuite extends AnyFunSuite with ScalaCheckPropertyChecks {
 
   test("secondMaximum") {
     forAll { xs: List[Int] =>

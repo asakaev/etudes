@@ -1,10 +1,10 @@
 package cracking
 
 import cracking.ArraysStrings._
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
-class ArraysStringsSuite extends FunSuite with GeneratorDrivenPropertyChecks {
+class ArraysStringsSuite extends AnyFunSuite with ScalaCheckPropertyChecks {
   test("allUnique") {
     forAll { s: String =>
       assert(allUnique1(s) == allUnique2(s))

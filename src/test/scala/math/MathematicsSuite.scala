@@ -1,10 +1,10 @@
 package math
 
 import math.Mathematics._
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
-class MathematicsSuite extends FunSuite with GeneratorDrivenPropertyChecks {
+class MathematicsSuite extends AnyFunSuite with ScalaCheckPropertyChecks {
   test("smallest") {
     assert(smallest(125) == 100)
     assert(smallest(10) == 10)

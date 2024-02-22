@@ -1,14 +1,14 @@
 package sorting
 
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import sorting.BubbleSort.{ bubbleSort, sweep }
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
+import sorting.BubbleSort.{bubbleSort, sweep}
 
-class BubbleSortSuite extends FunSuite with GeneratorDrivenPropertyChecks {
+class BubbleSortSuite extends AnyFunSuite with ScalaCheckPropertyChecks {
   test("sweep") {
     assert(sweep(List(1, 2, 3)) == Left(List(3, 2, 1)))
     assert(sweep(List(1)) == Left(List(1)))
-    assert(sweep(Nil) == Left(Nil))
+    assert(sweep[Int](Nil) == Left(Nil))
     assert(sweep(List(2, 1)) == Right(List(2, 1)))
     assert(sweep(List(5, 1, 4, 2, 8)) == Right(List(8, 5, 2, 4, 1)))
   }

@@ -2,11 +2,11 @@ package sequence
 
 import fs2._
 import org.scalacheck.Gen
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import sequence.RunLengthEncoding._
 
-class RunLengthEncodingSuite extends FunSuite with GeneratorDrivenPropertyChecks {
+class RunLengthEncodingSuite extends AnyFunSuite with ScalaCheckPropertyChecks {
 
   test("rle") {
     assert(rle("") == "")
@@ -15,7 +15,8 @@ class RunLengthEncodingSuite extends FunSuite with GeneratorDrivenPropertyChecks
     assert(rle("AB") == "AB")
     assert(rle("AAB") == "A2B")
     assert(rle("ABB") == "AB2")
-    assert(rle("AAAABBBCCXYZDDDDEEEFFFAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBB") == "A4B3C2XYZD4E3F3A6B28")
+    assert(
+      rle("AAAABBBCCXYZDDDDEEEFFFAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBB") == "A4B3C2XYZD4E3F3A6B28")
   }
 
   test("rle stream") {

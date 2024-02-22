@@ -1,10 +1,10 @@
 package sorting
 
-import org.scalatest.FunSuite
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import sorting.QuickSort.{ partition, quickSort }
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
+import sorting.QuickSort.{partition, quickSort}
 
-class QuickSortSuite extends FunSuite with GeneratorDrivenPropertyChecks {
+class QuickSortSuite extends AnyFunSuite with ScalaCheckPropertyChecks {
 
   test("partition") {
     assert(partition(List.empty[Int]) == Nil      -> Nil)

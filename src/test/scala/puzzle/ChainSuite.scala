@@ -1,9 +1,9 @@
 package puzzle
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import puzzle.Chain._
 
-class ChainSuite extends FunSuite {
+class ChainSuite extends AnyFunSuite {
   import ChainSuite._
 
   test("transformationChain") {
