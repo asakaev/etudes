@@ -38,16 +38,16 @@ object JsonCodec {
   def traverse[K, V, K1, V1, E](
       m: Map[K, V]
   )(f: (K, V) => Either[E, (K1, V1)]): Either[E, Map[K1, V1]] = {
-    def go(m: Map[K, V], acc: Either[E, Map[K1, V1]]): Either[E, Map[K1, V1]] =
+    def go(m: Map[K, V], acc: Map[K1, V1]): Either[E, Map[K1, V1]] =
       m.headOption match {
-        case None => acc
+        case None => Right(acc)
         case Some((k, v)) =>
           f(k, v) match {
             case Left(e)         => Left(e)
-            case Right((k1, v1)) => go(m.tail, acc.map(_.updated(k1, v1)))
+            case Right((k1, v1)) => go(m.tail, acc.updated(k1, v1))
           }
       }
-    go(m, Right(Map.empty))
+    go(m, Map.empty)
   }
 
   def decoder(schema: List[(String, JType)]): Decoder = {
