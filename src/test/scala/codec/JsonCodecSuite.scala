@@ -29,4 +29,13 @@ class JsonCodecSuite extends AnyFunSuite {
     assert(dec(data) == Left(Error("JNum")))
   }
 
+  test("decoder4") {
+    val schema: Map[String, JType] = Map("age" -> JNum, "name" -> JStr, "active" -> JBool)
+    val data: Map[String, String]  = Map("age" -> "20", "name" -> "Alice")
+
+    val dec: Decoder = decoder(schema.toList)
+    val expected     = Map("age" -> JNum(20L), "name" -> JStr("Alice"))
+    assert(dec(data) == Right(expected))
+  }
+
 }
