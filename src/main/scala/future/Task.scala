@@ -19,19 +19,13 @@ object Task {
   def unit[A](a: A): Task[A] =
     _ => Future.successful(a)
 
-  def traverse[A, B](xs: List[Task[A]])(f: A => Task[B]): Task[List[B]] = {
-    def go(xs: List[Task[A]], acc: Task[List[B]]): Task[List[B]] = xs match {
-      case Nil => acc
-      case h :: tl =>
-        val acc1 = for {
-          ys <- acc
-          a  <- h
-          b  <- f(a)
-        } yield b :: ys
-
-        go(tl, acc1)
-    }
-    go(xs, unit(Nil)).map(_.reverse)
-  }
+  def traverse[A, B](xs: List[Task[A]])(f: A => Task[B]): Task[List[B]] =
+    xs.foldLeft(unit(List.empty[B])) { (acc, fa) =>
+      for {
+        bs <- acc
+        a  <- fa
+        b  <- f(a)
+      } yield b :: bs
+    }.map(_.reverse)
 
 }
