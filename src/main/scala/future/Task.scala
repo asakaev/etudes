@@ -1,5 +1,7 @@
 package future
 
+import java.util.concurrent.TimeUnit
+import scala.concurrent.duration.FiniteDuration
 import scala.concurrent.{ExecutionContext, Future}
 
 object Task {
@@ -16,8 +18,15 @@ object Task {
       fa(ec)
   }
 
-  def unit[A](a: A): Task[A] =
-    _ => Future.successful(a)
+  def fromFuture[A](f: ExecutionContext => Future[A]): Task[A] = f
+
+  def unit[A](a: A): Task[A] = _ => Future.successful(a)
+
+  def sleep(d: FiniteDuration): Task[Unit] =
+    _ => Future.successful { Thread.sleep(d.toMillis) }
+
+  val now: Task[FiniteDuration] =
+    _ => Future.successful { FiniteDuration(System.currentTimeMillis, TimeUnit.MILLISECONDS) }
 
   def traverse[A, B](xs: List[Task[A]])(f: A => Task[B]): Task[List[B]] =
     xs.foldLeft(unit(List.empty[B])) { (acc, fa) =>
@@ -27,5 +36,15 @@ object Task {
         b  <- f(a)
       } yield b :: bs
     }.map(_.reverse)
+
+  def parTraverse[A, B](n: Int)(xs: List[Task[A]])(f: A => Task[B]): Task[List[B]] =
+    xs.grouped(n).foldLeft(unit(List.empty[B])) { (acc, chunk) =>
+      for {
+        l <- acc
+        r <- Task.fromFuture { implicit ec =>
+          Future.sequence(chunk.map(_.flatMap(f).future))
+        }
+      } yield l ++ r
+    }
 
 }
