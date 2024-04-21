@@ -51,7 +51,7 @@ object P2241_DesignATM {
     def withdraw(amount: Int): Array[Int] = {
       val r = Ops.withdraw(ref, amount)
       ref = r.fold(ref)(_._1)
-      r.map(_._2).getOrElse(Array(-1))
+      r.fold(Array(-1))(_._2)
     }
   }
 
