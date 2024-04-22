@@ -1,7 +1,7 @@
 package leetcode
 
 import leetcode.P2241_DesignATM.ATM
-import leetcode.P2241_DesignATM.Ops.{deposit, withdraw}
+import leetcode.P2241_DesignATM.ATM.{deposit, withdraw}
 import leetcode.P2241_DesignATMSuite.list
 import org.scalatest.funsuite.AnyFunSuite
 
